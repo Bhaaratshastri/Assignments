@@ -1,3 +1,8 @@
+/**
+* Description: I'll add it later
+ * Created By: Bhaarat Shastri
+ * Created Date: 11-Apr-2023
+**/
 public with sharing class OpptyTriggerHandler {
 	//ownership private
     public static void ownershipPrivate(List<Opportunity> opptyList){
@@ -43,7 +48,6 @@ public with sharing class OpptyTriggerHandler {
     	}// End for
     }
     // delete oppty
- 
     public static void deleteOppty(List<Opportunity> opptyList){
         Set<String> accountIds = new Set<String> ();
     	for (Opportunity oppty : opptyList){

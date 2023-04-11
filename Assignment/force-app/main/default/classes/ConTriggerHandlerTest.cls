@@ -1,3 +1,8 @@
+/**
+* Description: I'll add it later
+ * Created By: Bhaarat Shastri
+ * Created Date: 11-Apr-2023
+**/
 @isTest
 public class ConTriggerHandlerTest {
 	@IsTest
@@ -25,14 +30,14 @@ public class ConTriggerHandlerTest {
                 System.assertEquals(acct1.BillingState, con.OtherState);
                 System.assertEquals(acct1.BillingPostalCode, con.OtherPostalCode);
                 System.assertEquals(acct1.BillingCountry, con.OtherCountry);
-            }else{
+            }//End if
+            else{
                 System.assertEquals(acct2.BillingStreet, con.OtherStreet);
                 System.assertEquals(acct2.BillingCity, con.OtherCity);
                 System.assertEquals(acct2.BillingState, con.OtherState);
                 System.assertEquals(acct2.BillingPostalCode, con.OtherPostalCode);
                 System.assertEquals(acct2.BillingCountry, con.OtherCountry);
-            }
-            
+            }//End else
         }    
     }
 }
