@@ -25,8 +25,7 @@ private class OpptyTriggerHandlerTest {
                              nresult.getErrors()[0].getMessage());
         //Positive Test
         System.assert(presult.isSuccess());
-        System.assertNotEquals(oppty2.Id, null);
-       
+        System.assertNotEquals(oppty2.Id, null);       
     }
     @IsTest //use to test ownershipPrivateAnnualRevenue method
     static void testInsert2Oppty(){

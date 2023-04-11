@@ -12,7 +12,8 @@ public with sharing class ConTriggerHandler {
 					accountIds.add(con.AccountId);
         	}// End if
     	}// End for
-    	List<Account> acct = [SELECT Id, BillingStreet,BillingCity, BillingState, BillingPostalCode, BillingCountry FROM Account];
+    	List<Account> acct = [SELECT Id, BillingStreet,BillingCity, BillingState, BillingPostalCode, BillingCountry 
+								FROM Account];
     	for(contact con : conList){
         	for(Account accts : acct){
             	if(con.AccountId ==  accts.Id){
