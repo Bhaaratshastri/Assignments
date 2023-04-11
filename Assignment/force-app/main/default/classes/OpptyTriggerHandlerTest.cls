@@ -49,7 +49,8 @@ private class OpptyTriggerHandlerTest {
                              nresult.getErrors()[0].getMessage());
         //Positive Test
         System.assert(presult.isSuccess());
-        System.assertEquals(oppty2.Id, oppty2.Id);    }
+        System.assertNotEquals(oppty2.Id, null);
+    }
     @IsTest
     static void testInsert3Oppty(){
         Account acct1 = new Account(Name = 'Test', Ownership = 'Private', AnnualRevenue = 5000);
@@ -71,7 +72,7 @@ private class OpptyTriggerHandlerTest {
                              nresult.getErrors()[0].getMessage());
         //Positive Test
         System.assert(presult.isSuccess());
-        System.assertEquals(oppty2.Id, oppty2.Id);    
+        System.assertNotEquals(oppty2.Id, null);    
     }
     @IsTest
     static void testDeleteOppty(){
