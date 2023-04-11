@@ -1,11 +1,11 @@
 /**
-* Description: I'll add it later
+* Description: Use to test Opportunity trigger and trigger handler with diffrent senarios
  * Created By: Bhaarat Shastri
  * Created Date: 11-Apr-2023
 **/
 @isTest
 private class OpptyTriggerHandlerTest {
-	@IsTest
+	@IsTest //use to test ownershipPrivate method
     static void testInsert1Oppty(){
         Account acct1 = new Account(Name = 'Test', Ownership = 'Private', AnnualRevenue = 500000);
         insert acct1;
@@ -28,7 +28,7 @@ private class OpptyTriggerHandlerTest {
         System.assertNotEquals(oppty2.Id, null);
        
     }
-    @IsTest
+    @IsTest //use to test ownershipPrivateAnnualRevenue method
     static void testInsert2Oppty(){
         Account acct1 = new Account(Name = 'Test', Ownership = 'Private', AnnualRevenue = 5000);
         insert acct1;
@@ -51,7 +51,7 @@ private class OpptyTriggerHandlerTest {
         System.assert(presult.isSuccess());
         System.assertNotEquals(oppty2.Id, null);
     }
-    @IsTest
+    @IsTest //use to test ownershipPrivateAnnualrevOpptyStage method
     static void testInsert3Oppty(){
         Account acct1 = new Account(Name = 'Test', Ownership = 'Private', AnnualRevenue = 5000);
         insert acct1;
@@ -74,7 +74,7 @@ private class OpptyTriggerHandlerTest {
         System.assert(presult.isSuccess());
         System.assertNotEquals(oppty2.Id, null);    
     }
-    @IsTest
+    @IsTest//use to test deleteOppty method
     static void testDeleteOppty(){
         Account acct1 = new Account(Name = 'Test', Ownership = 'Private', AnnualRevenue = 500000);
         insert acct1;
@@ -92,7 +92,32 @@ private class OpptyTriggerHandlerTest {
 
         System.assert(!result.isSuccess());
         System.assert(result.getErrors().size() > 0);
-        System.assertEquals('Private Account was not be delete',
-                             result.getErrors()[0].getMessage());
+        System.assertEquals('Private Account was not be delete', result.getErrors()[0].getMessage());
+    }
+    @IsTest//use to test updateOppty method
+    static void testOpptyId() {
+        Account acct1 = new Account(Name = 'Test1', Ownership = 'Public', AnnualRevenue = 500000);
+        insert acct1;
+        acct1 = [SELECT Id, Latest_Oppty__c
+                FROM Account
+                WHERE Id =: acct1.Id];
+        System.assertEquals(acct1.Latest_Oppty__c, null);
+        Opportunity oppty1 = new Opportunity(AccountId = acct1.Id , Name = 'Test1', StageName = 'Qualification', CloseDate = System.today());
+        Test.startTest();
+        	Database.SaveResult result1 = Database.insert(oppty1, false);
+        Test.stopTest();
+        acct1 = [SELECT Id, Latest_Oppty__c
+                FROM Account
+                WHERE Id =: acct1.Id];
+        System.assert(result1.isSuccess());        
+        System.assertEquals(oppty1.Id, acct1.Latest_Oppty__c);
+        
+        Opportunity oppty2 = new Opportunity(AccountId = acct1.Id , Name = 'Test2', StageName = 'Qualification', CloseDate = System.today());
+        Database.SaveResult result2 = Database.insert(oppty2, false);
+        acct1 = [SELECT Id, Latest_Oppty__c
+                FROM Account
+                WHERE Id =: acct1.Id];
+        System.assert(result2.isSuccess());
+        System.assertEquals(oppty2.Id, acct1.Latest_Oppty__c);
     }
 }

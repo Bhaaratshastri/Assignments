@@ -1,14 +1,15 @@
 /**
-* Description: I'll add it later
+* Description: use to make Contact trigger logic less
  * Created By: Bhaarat Shastri
  * Created Date: 11-Apr-2023
 **/
-public class ConTriggerHandler {
+public with sharing class ConTriggerHandler {
+	//update otherAddress 
 	public static void updateContact(List<Contact> conList){
         Set<String> accountIds = new Set<String> ();
     	for (Contact con : conList){
         	if (String.isNotBlank(con.AccountId)){
-            	accountIds.add(con.AccountId);
+					accountIds.add(con.AccountId);
         	}// End if
     	}// End for
     	List<Account> acct = [SELECT Id, BillingStreet,BillingCity, BillingState, BillingPostalCode, BillingCountry FROM Account];

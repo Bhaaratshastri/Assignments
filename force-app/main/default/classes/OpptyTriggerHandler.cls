@@ -1,5 +1,5 @@
 /**
-* Description: I'll add it later
+* Description: use to make Opportunity trigger logic less
  * Created By: Bhaarat Shastri
  * Created Date: 11-Apr-2023
 **/
@@ -85,10 +85,32 @@ public with sharing class OpptyTriggerHandler {
              privatAccts.add(acct.Id);
         }// End for
     	for (Opportunity oppty : opptyList){
-         //   System.assert(false, 'Stage 84 = '+oppty.StageName  + ' Condition = '+ oppty.StageName.equals('Qualification'));
-            if(privatAccts.contains(oppty.AccountId) && oppty.StageName.equals('Qualification')){
+        	if(privatAccts.contains(oppty.AccountId) && oppty.StageName.equals('Qualification')){
                 oppty.StageName.addError('Opportunity cannot be created. kindly contact your system administrator');
          	}// End if
     	}// End for
     }
+	//Update field on account
+	public static void updateOppty(List<Opportunity> opptyList){
+		Set<Id> listIds = new Set<Id>();
+		for (Opportunity oppty : opptyList){
+        	if (String.isNotBlank(oppty.AccountId)){
+            	listIds.add(oppty.AccountId);
+        	}// End if
+    	}// End for
+		Map<Id,Account> accts = new Map<Id,Account>([SELECT Id, Latest_Oppty__c  
+														FROM account 
+														WHERE Id in: listIds]);
+		for ( Opportunity oppty :opptyList)
+		{
+			Account myacc = accts.get(oppty.AccountId);
+			myacc.Latest_Oppty__c=oppty.Id;
+		}//End for
+		update accts.values();
+    }
 }
+
+
+
+
+ //   System.assert(false, 'Stage 84 = '+oppty.StageName  + ' Condition = '+ oppty.StageName.equals('Qualification'));
