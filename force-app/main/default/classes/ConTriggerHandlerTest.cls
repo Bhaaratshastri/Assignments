@@ -4,7 +4,7 @@
  * Created Date: 11-Apr-2023
 **/
 @isTest
-public class ConTriggerHandlerTest {
+private class ConTriggerHandlerTest {
 	@IsTest
     static void testInsert1Oppty(){
         Account acct1 = new Account(Name = 'Test',BillingStreet = '2230/4', BillingCity = 'Surat', BillingState = 'Gujrat', BillingPostalCode = '356004', BillingCountry = 'India');

@@ -4,7 +4,7 @@
  * Created Date: 11-Apr-2023
 **/
 public with sharing class AccountTriggerHandler {
-    // Assign Hot Account
+    // Assign Master Hot Account
     public static void updateParantAccountHot(List<Account> acctList) {
         Set<String> ratings = new Set<String> ();
     	for (Account acct : acctList){
@@ -15,7 +15,7 @@ public with sharing class AccountTriggerHandler {
         List<Account> hotAccount = new List<Account>();
         hotAccount = [SELECT Id, Name 
                     FROM Account 
-                    WHERE Id = '0012w00001Ssr42AAB'];
+                    WHERE Name = 'Master Hot'];
         for(Account acct : acctList){
             for(Account hotAcct : hotAccount){
                 if(acct.Rating == 'Hot' ){
@@ -24,7 +24,7 @@ public with sharing class AccountTriggerHandler {
             }// End for
         }// End for
     }
-    // Assign Cold Account
+    // Assign Master Cold Account
     public static void updateParantAccountCold(List<Account> acctList) {
         Set<String> ratings = new Set<String> ();
     	for (Account acct : acctList){
@@ -35,7 +35,7 @@ public with sharing class AccountTriggerHandler {
         List<Account> coldAccount = new List<Account>();
         coldAccount = [SELECT Id, Name 
                     FROM Account 
-                    WHERE Id = '0012w00001Ssoa3AAB'];
+                    WHERE Name = 'Master Cold'];
         for(Account acct : acctList){
             for(Account coldAcct : coldAccount){
                 if(acct.Rating == 'Cold' ){
@@ -44,7 +44,7 @@ public with sharing class AccountTriggerHandler {
             }// End for
         }// End for
     }
-    // Assign Warm Account
+    // Assign Master Warm Account
     public static void updateParantAccountWarm(List<Account> acctList) {
         Set<String> ratings = new Set<String> ();
     	for (Account acct : acctList){
@@ -55,7 +55,7 @@ public with sharing class AccountTriggerHandler {
         List<Account> warmAccount = new List<Account>();
         warmAccount = [SELECT Id, Name 
                     FROM Account 
-                    WHERE Id = '0012w00001Ssr4CAAR'];
+                    WHERE Name = 'Master Warm'];
         for(Account acct : acctList){
             for(Account warmAcct : warmAccount){
                 if(acct.Rating == 'Warm' ){
