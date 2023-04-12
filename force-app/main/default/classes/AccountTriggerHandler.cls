@@ -4,7 +4,7 @@
  * Created Date: 11-Apr-2023
 **/
 public with sharing class AccountTriggerHandler {
-    // Assign Master Hot Account
+    // Assign Master Account
     public static void updateParantAccount(List<Account> acctList) {
         Map<String, Account> mapRating = new Map<String, Account>();
         for (Account acct: [SELECT Id, Name, Rating 
@@ -18,5 +18,12 @@ public with sharing class AccountTriggerHandler {
             }
         }// End for
     }
-    
+    /*public static void updateContactField(List<Account> acctList) {
+        for(Account acct : acctList){
+        List<Contact> con = new List<Contact>();
+        con = [SELECT Id, AccountId
+            FROM Contact
+            WHERE AccountId IN acct.Id]
+        }
+    }*/
 }
