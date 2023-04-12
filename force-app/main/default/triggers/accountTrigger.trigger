@@ -5,8 +5,7 @@
 **/
 trigger accountTrigger on Account (before insert) {
     if (Trigger.isBefore && Trigger.isInsert) {
-        AccountTriggerHandler.updateParantAccountHot(Trigger.new);
-        AccountTriggerHandler.updateParantAccountCold(Trigger.new);
-        AccountTriggerHandler.updateParantAccountWarm(Trigger.new);
+        AccountTriggerHandler.updateParantAccount(Trigger.new);
+        
     }// End if
 }

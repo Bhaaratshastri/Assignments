@@ -16,6 +16,7 @@ private class AccountTriggerTest {
                 FROM Account
                 WHERE Id =: acct2.Id];
         System.assertEquals(acct2.ParentId,acct1.Id);
+        System.assertNotEquals(acct2.ParentId,null);
     }
     @IsTest
     static void testColdParentAccountId(){
@@ -28,6 +29,7 @@ private class AccountTriggerTest {
                 FROM Account
                 WHERE Id =: acct2.Id];
         System.assertEquals(acct2.ParentId,acct1.Id);
+        System.assertNotEquals(acct2.ParentId,null);
     }
     @IsTest
     static void testWarmParentAccountId(){
@@ -40,5 +42,6 @@ private class AccountTriggerTest {
                 FROM Account
                 WHERE Id =: acct2.Id];
         System.assertEquals(acct2.ParentId,acct1.Id);
+        System.assertNotEquals(acct2.ParentId,null);
     }
 }
