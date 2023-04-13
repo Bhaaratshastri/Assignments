@@ -15,7 +15,7 @@ public with sharing class AccountTriggerHandler {
         for(Account acct : acctList){
             if (mapRating.Containskey(acct.Rating)) {
                 acct.ParentId = mapRating.get(acct.Rating).Id;
-            }
+            }//End if
         }// End for
     }
     /*public static void updateContactField(List<Account> acctList) {
